@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BGMESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“BGMES.dbo.TTS0091”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="TTS0091">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+            <PropertyRef Name="MT_ID" />
+            <PropertyRef Name="REC_CREATOR" />
+            <PropertyRef Name="REC_CREATE_TIME" />
+            <PropertyRef Name="REC_REVISOR" />
+            <PropertyRef Name="REC_REVISE_TIME" />
+            <PropertyRef Name="REC_DELETOR" />
+            <PropertyRef Name="REC_DELETE_TIME" />
+            <PropertyRef Name="DELETE_FLAG" />
+            <PropertyRef Name="ARCHIVE_FLAG" />
+            <PropertyRef Name="ARCHIVE_STAMP_NO" />
+            <PropertyRef Name="REMARK" />
+            <PropertyRef Name="CODE_CLASS" />
+            <PropertyRef Name="CODE_NAME" />
+            <PropertyRef Name="CODE_LEN" />
+            <PropertyRef Name="CODE_ACT_LEN" />
+            <PropertyRef Name="CODE_DESC_1_NAME" />
+            <PropertyRef Name="CODE_DESC_1_LEN" />
+            <PropertyRef Name="CODE_DESC_2_NAME" />
+            <PropertyRef Name="CODE_DESC_2_LEN" />
+            <PropertyRef Name="CODE_DESC_3_NAME" />
+            <PropertyRef Name="CODE_DESC_3_LEN" />
+            <PropertyRef Name="CODE_DESC_4_NAME" />
+            <PropertyRef Name="CODE_DESC_4_LEN" />
+            <PropertyRef Name="CODE_DESC_5_NAME" />
+            <PropertyRef Name="CODE_DESC_5_LEN" />
+            <PropertyRef Name="CODE_SOURCE" />
+            <PropertyRef Name="CODE_AUTH" />
+          </Key>
+          <Property Name="REC_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MT_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="REC_CREATOR" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="REC_CREATE_TIME" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="REC_REVISOR" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="REC_REVISE_TIME" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="REC_DELETOR" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="REC_DELETE_TIME" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="DELETE_FLAG" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="ARCHIVE_FLAG" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="ARCHIVE_STAMP_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="REMARK" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CODE_CLASS" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CODE_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CODE_LEN" Type="smallint" Nullable="false" />
+          <Property Name="CODE_ACT_LEN" Type="smallint" Nullable="false" />
+          <Property Name="CODE_DESC_1_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CODE_DESC_1_LEN" Type="smallint" Nullable="false" />
+          <Property Name="CODE_DESC_2_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CODE_DESC_2_LEN" Type="smallint" Nullable="false" />
+          <Property Name="CODE_DESC_3_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CODE_DESC_3_LEN" Type="smallint" Nullable="false" />
+          <Property Name="CODE_DESC_4_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CODE_DESC_4_LEN" Type="smallint" Nullable="false" />
+          <Property Name="CODE_DESC_5_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CODE_DESC_5_LEN" Type="smallint" Nullable="false" />
+          <Property Name="CODE_SOURCE" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="CODE_AUTH" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BGMESModelStoreContainer">
+          <EntitySet Name="TTS0091" EntityType="Self.TTS0091" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TTS0091].[REC_ID] AS [REC_ID], 
+    [TTS0091].[MT_ID] AS [MT_ID], 
+    [TTS0091].[REC_CREATOR] AS [REC_CREATOR], 
+    [TTS0091].[REC_CREATE_TIME] AS [REC_CREATE_TIME], 
+    [TTS0091].[REC_REVISOR] AS [REC_REVISOR], 
+    [TTS0091].[REC_REVISE_TIME] AS [REC_REVISE_TIME], 
+    [TTS0091].[REC_DELETOR] AS [REC_DELETOR], 
+    [TTS0091].[REC_DELETE_TIME] AS [REC_DELETE_TIME], 
+    [TTS0091].[DELETE_FLAG] AS [DELETE_FLAG], 
+    [TTS0091].[ARCHIVE_FLAG] AS [ARCHIVE_FLAG], 
+    [TTS0091].[ARCHIVE_STAMP_NO] AS [ARCHIVE_STAMP_NO], 
+    [TTS0091].[REMARK] AS [REMARK], 
+    [TTS0091].[CODE_CLASS] AS [CODE_CLASS], 
+    [TTS0091].[CODE_NAME] AS [CODE_NAME], 
+    [TTS0091].[CODE_LEN] AS [CODE_LEN], 
+    [TTS0091].[CODE_ACT_LEN] AS [CODE_ACT_LEN], 
+    [TTS0091].[CODE_DESC_1_NAME] AS [CODE_DESC_1_NAME], 
+    [TTS0091].[CODE_DESC_1_LEN] AS [CODE_DESC_1_LEN], 
+    [TTS0091].[CODE_DESC_2_NAME] AS [CODE_DESC_2_NAME], 
+    [TTS0091].[CODE_DESC_2_LEN] AS [CODE_DESC_2_LEN], 
+    [TTS0091].[CODE_DESC_3_NAME] AS [CODE_DESC_3_NAME], 
+    [TTS0091].[CODE_DESC_3_LEN] AS [CODE_DESC_3_LEN], 
+    [TTS0091].[CODE_DESC_4_NAME] AS [CODE_DESC_4_NAME], 
+    [TTS0091].[CODE_DESC_4_LEN] AS [CODE_DESC_4_LEN], 
+    [TTS0091].[CODE_DESC_5_NAME] AS [CODE_DESC_5_NAME], 
+    [TTS0091].[CODE_DESC_5_LEN] AS [CODE_DESC_5_LEN], 
+    [TTS0091].[CODE_SOURCE] AS [CODE_SOURCE], 
+    [TTS0091].[CODE_AUTH] AS [CODE_AUTH]
+    FROM [dbo].[TTS0091] AS [TTS0091]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BGMESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TTS0091">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+            <PropertyRef Name="MT_ID" />
+            <PropertyRef Name="REC_CREATOR" />
+            <PropertyRef Name="REC_CREATE_TIME" />
+            <PropertyRef Name="REC_REVISOR" />
+            <PropertyRef Name="REC_REVISE_TIME" />
+            <PropertyRef Name="REC_DELETOR" />
+            <PropertyRef Name="REC_DELETE_TIME" />
+            <PropertyRef Name="DELETE_FLAG" />
+            <PropertyRef Name="ARCHIVE_FLAG" />
+            <PropertyRef Name="ARCHIVE_STAMP_NO" />
+            <PropertyRef Name="REMARK" />
+            <PropertyRef Name="CODE_CLASS" />
+            <PropertyRef Name="CODE_NAME" />
+            <PropertyRef Name="CODE_LEN" />
+            <PropertyRef Name="CODE_ACT_LEN" />
+            <PropertyRef Name="CODE_DESC_1_NAME" />
+            <PropertyRef Name="CODE_DESC_1_LEN" />
+            <PropertyRef Name="CODE_DESC_2_NAME" />
+            <PropertyRef Name="CODE_DESC_2_LEN" />
+            <PropertyRef Name="CODE_DESC_3_NAME" />
+            <PropertyRef Name="CODE_DESC_3_LEN" />
+            <PropertyRef Name="CODE_DESC_4_NAME" />
+            <PropertyRef Name="CODE_DESC_4_LEN" />
+            <PropertyRef Name="CODE_DESC_5_NAME" />
+            <PropertyRef Name="CODE_DESC_5_LEN" />
+            <PropertyRef Name="CODE_SOURCE" />
+            <PropertyRef Name="CODE_AUTH" />
+          </Key>
+          <Property Name="REC_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MT_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_CREATOR" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_CREATE_TIME" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_REVISOR" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_REVISE_TIME" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_DELETOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_DELETE_TIME" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DELETE_FLAG" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ARCHIVE_FLAG" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ARCHIVE_STAMP_NO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REMARK" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_CLASS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_LEN" Type="Int16" Nullable="false" />
+          <Property Name="CODE_ACT_LEN" Type="Int16" Nullable="false" />
+          <Property Name="CODE_DESC_1_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_DESC_1_LEN" Type="Int16" Nullable="false" />
+          <Property Name="CODE_DESC_2_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_DESC_2_LEN" Type="Int16" Nullable="false" />
+          <Property Name="CODE_DESC_3_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_DESC_3_LEN" Type="Int16" Nullable="false" />
+          <Property Name="CODE_DESC_4_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_DESC_4_LEN" Type="Int16" Nullable="false" />
+          <Property Name="CODE_DESC_5_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_DESC_5_LEN" Type="Int16" Nullable="false" />
+          <Property Name="CODE_SOURCE" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE_AUTH" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BGMESEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TTS0091" EntityType="Self.TTS0091" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BGMESModelStoreContainer" CdmEntityContainer="BGMESEntities">
+          <EntitySetMapping Name="TTS0091">
+            <EntityTypeMapping TypeName="BGMESModel.TTS0091">
+              <MappingFragment StoreEntitySet="TTS0091">
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="MT_ID" ColumnName="MT_ID" />
+                <ScalarProperty Name="REC_CREATOR" ColumnName="REC_CREATOR" />
+                <ScalarProperty Name="REC_CREATE_TIME" ColumnName="REC_CREATE_TIME" />
+                <ScalarProperty Name="REC_REVISOR" ColumnName="REC_REVISOR" />
+                <ScalarProperty Name="REC_REVISE_TIME" ColumnName="REC_REVISE_TIME" />
+                <ScalarProperty Name="REC_DELETOR" ColumnName="REC_DELETOR" />
+                <ScalarProperty Name="REC_DELETE_TIME" ColumnName="REC_DELETE_TIME" />
+                <ScalarProperty Name="DELETE_FLAG" ColumnName="DELETE_FLAG" />
+                <ScalarProperty Name="ARCHIVE_FLAG" ColumnName="ARCHIVE_FLAG" />
+                <ScalarProperty Name="ARCHIVE_STAMP_NO" ColumnName="ARCHIVE_STAMP_NO" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="CODE_CLASS" ColumnName="CODE_CLASS" />
+                <ScalarProperty Name="CODE_NAME" ColumnName="CODE_NAME" />
+                <ScalarProperty Name="CODE_LEN" ColumnName="CODE_LEN" />
+                <ScalarProperty Name="CODE_ACT_LEN" ColumnName="CODE_ACT_LEN" />
+                <ScalarProperty Name="CODE_DESC_1_NAME" ColumnName="CODE_DESC_1_NAME" />
+                <ScalarProperty Name="CODE_DESC_1_LEN" ColumnName="CODE_DESC_1_LEN" />
+                <ScalarProperty Name="CODE_DESC_2_NAME" ColumnName="CODE_DESC_2_NAME" />
+                <ScalarProperty Name="CODE_DESC_2_LEN" ColumnName="CODE_DESC_2_LEN" />
+                <ScalarProperty Name="CODE_DESC_3_NAME" ColumnName="CODE_DESC_3_NAME" />
+                <ScalarProperty Name="CODE_DESC_3_LEN" ColumnName="CODE_DESC_3_LEN" />
+                <ScalarProperty Name="CODE_DESC_4_NAME" ColumnName="CODE_DESC_4_NAME" />
+                <ScalarProperty Name="CODE_DESC_4_LEN" ColumnName="CODE_DESC_4_LEN" />
+                <ScalarProperty Name="CODE_DESC_5_NAME" ColumnName="CODE_DESC_5_NAME" />
+                <ScalarProperty Name="CODE_DESC_5_LEN" ColumnName="CODE_DESC_5_LEN" />
+                <ScalarProperty Name="CODE_SOURCE" ColumnName="CODE_SOURCE" />
+                <ScalarProperty Name="CODE_AUTH" ColumnName="CODE_AUTH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>非模块化方式使用layui</title>
+    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- 你的HTML代码 -->
+    
+    <fieldset class="layui-elem-field site-demo-button">
+        <legend>查询条件</legend>
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">大类</label>
+                    <div class="layui-input-inline">
+                        <select name="modules" lay-verify="required" >
+                            <option value=""></option>
+                            <option value="1">layer</option>
+                            <option value="2">form</option>
+                            <option value="3">layim</option>
+                            <option value="4">element</option>
+                            <option value="5">laytpl</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">代码编号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">代码名称</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset> 
+    <div class="layui-tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this">网站设置</li>
+            <li>用户管理</li>
+            <li>权限分配</li>
+            <li>商品管理</li>
+            <li>订单管理</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                1. 高度默认自适应，也可以随意固宽。
+                <br>2. Tab进行了响应式处理，所以无需担心数量多少。
+            </div>
+            <div class="layui-tab-item">内容2</div>
+            <div class="layui-tab-item">内容3</div>
+            <div class="layui-tab-item">内容4</div>
+            <div class="layui-tab-item">内容5</div>
+        </div>
+    </div>
+    <script src="~/Scripts/layui/layui.all.js"></script>
+    <script>
+        //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
+        ; !function () {
+            var layer = layui.layer
+            , form = layui.form;
+
+            layer.msg('Hello World');
+        }();
+    </script>
+</body>
+</html>

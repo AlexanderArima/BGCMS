@@ -1,4 +1,4 @@
-﻿using BGCMS.Model;
+﻿using BGMES.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,19 +24,5 @@ namespace BGMES.DAL
             }
         }
 
-        /// <summary>
-        /// 类别名称去重
-        /// </summary>
-        /// <returns></returns>
-        public IList<string> GetCodeName()
-        {
-            using (BGMESEntities db = new BGMESEntities())
-            {
-                var query = from a in db.TTS0091
-                            where a.DELETE_FLAG == " "
-                            select a.CODE_NAME;
-                return query.Distinct().ToList();
-            }
-        }
     }
 }

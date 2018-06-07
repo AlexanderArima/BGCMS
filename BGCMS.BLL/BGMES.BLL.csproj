@@ -42,6 +42,16 @@
     <Compile Include="TS0000.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BGCMS.Model\BGMES.Model.csproj">
+      <Project>{9a24a366-d6e7-4c23-b332-f76c76464ad7}</Project>
+      <Name>BGMES.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BGMES.DAL\BGMES.DAL.csproj">
+      <Project>{e7f1badc-9164-4473-99bf-e082dfcda3bb}</Project>
+      <Name>BGMES.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

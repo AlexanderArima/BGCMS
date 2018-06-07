@@ -8,10 +8,12 @@ namespace BGCMS.Web.Areas.TS00WG.Controllers
 {
     public class TS0000Controller : Controller
     {
+        public static BGMES.BLL.TS0000 _bll = new BGMES.BLL.TS0000();
         //
         // GET: /TS00WG/TS0000/
         public ActionResult Index()
         {
+            ViewData["ListCodeData"] = _bll.GetCodeName();
             return View();
         }
 

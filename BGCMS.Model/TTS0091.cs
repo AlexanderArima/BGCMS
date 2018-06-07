@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BGCMS.Model
+namespace BGMES.Model
 {
     using System;
     using System.Collections.Generic;

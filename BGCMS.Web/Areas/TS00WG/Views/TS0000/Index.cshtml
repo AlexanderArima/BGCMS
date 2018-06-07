@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
+@{
+    var DictCodeData = ViewData["ListCodeData"] as IDictionary<string,object>;
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,22 +13,6 @@
     <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
 </head>
 <body>
-    <!-- 导航菜单-->
-    @*<ul class="layui-nav" lay-filter="">
-        <li class="layui-nav-item"><a href="">最新活动</a></li>
-        <li class="layui-nav-item layui-this"><a href="">产品</a></li>
-        <li class="layui-nav-item"><a href="">大数据</a></li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">解决方案</a>
-            <dl class="layui-nav-child">
-                 二级菜单 
-                <dd><a href="">移动模块</a></dd>
-                <dd><a href="">后台模版</a></dd>
-                <dd><a href="">电商平台</a></dd>
-            </dl>
-        </li>
-        <li class="layui-nav-item"><a href="">社区</a></li>
-    </ul>*@
     <div class="layui-container">
         <div class="layui-row">
             <!-- 导航菜单-->
@@ -81,11 +68,10 @@
                                 <div class="layui-input-inline">
                                     <select name="modules" lay-verify="required">
                                         <option value=""></option>
-                                        <option value="1">layer</option>
-                                        <option value="2">form</option>
-                                        <option value="3">layim</option>
-                                        <option value="4">element</option>
-                                        <option value="5">laytpl</option>
+                                        @for (int i = 0; i < DictCodeData.Count; i++)
+                                        {
+                                            <option value="@DictCodeData.Keys.ElementAt(i)">@DictCodeData.Values.ElementAt(i)</option>
+                                        }
                                     </select>
                                 </div>
                             </div>
@@ -106,11 +92,11 @@
                     </form>
                 </fieldset>
                 <fieldset class="layui-elem-field site-demo-button">
-                    <form class="layui-form" action="">
+                    <form class="layui-form" onsubmit="return false">
                         <div class="layui-form-item" style="margin:2px">
                             <div class="layui-inline">
                                 <div class="layui-btn-group">
-                                    <button class="layui-btn layui-btn-normal">查询</button>
+                                    <button class="layui-btn layui-btn-normal" onclick="Query()">查询</button>
                                     <button class="layui-btn layui-btn-normal">新增</button>
                                     <button class="layui-btn layui-btn-normal">修改</button>
                                     <button class="layui-btn layui-btn-normal">删除</button>
@@ -132,26 +118,50 @@
                             <table class="layui-table">
                                 <colgroup>
                                     <col width="150">
-                                    <col width="200">
-                                    <col>
+                                    <col width="170">
+                                    <col width="260">
+                                    <col width="150">
+                                    <col width="150">
+                                    <col width="100">
+                                    <col width="150">
+                                    <col width="100">
+                                    <col width="150">
                                 </colgroup>
                                 <thead>
                                     <tr>
-                                        <th>昵称</th>
-                                        <th>加入时间</th>
-                                        <th>签名</th>
+                                        <th>代码编号</th>
+                                        <th>代码名称</th>
+                                        <th>代码实际使用长度</th>
+                                        <th>代码来源</th>
+                                        <th>代码权限</th>
+                                        <th>创建人</th>
+                                        <th>创建时间</th>
+                                        <th>修改人</th>
+                                        <th>修改时间</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>贤心</td>
-                                        <td>2016-11-29</td>
-                                        <td>人生就像是一场修行</td>
+                                        <td>ATS01</td>
+                                        <td>托运单位</td>
+                                        <td>1</td>
+                                        <td>汽车运输</td>
+                                        <td></td>
+                                        <td>admin</td>
+                                        <td>2018-10-01 00:00:00</td>
+                                        <td>admin</td>
+                                        <td>2018-10-02 00:00:00</td>
                                     </tr>
                                     <tr>
-                                        <td>许闲心</td>
-                                        <td>2016-11-28</td>
-                                        <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+                                        <td>ATS01</td>
+                                        <td>托运单位</td>
+                                        <td>1</td>
+                                        <td>汽车运输</td>
+                                        <td></td>
+                                        <td>admin</td>
+                                        <td>2018-10-01 00:00:00</td>
+                                        <td>admin</td>
+                                        <td>2018-10-02 00:00:00</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -199,11 +209,15 @@
         <script>
             //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
             ; !function () {
-                var layer = layui.layer
-                , form = layui.form;
-
-                layer.msg('Hello World');
+                var layer = layui.layer,
+                    form = layui.form;
+                
             }();
+
+            function Query()
+            {
+                layer.msg("查询", { time: 2000, icon: 1});
+            }
         </script>
 </body>
 </html>

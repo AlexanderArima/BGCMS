@@ -12,7 +12,7 @@ namespace BGMES.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class TTS0092
+    public partial class TEPEP03
     {
         public string REC_ID { get; set; }
         public string MT_ID { get; set; }
@@ -27,11 +27,20 @@ namespace BGMES.Model
         public string ARCHIVE_STAMP_NO { get; set; }
         public string REMARK { get; set; }
         public string CODE_CLASS { get; set; }
-        public string CODE { get; set; }
-        public string CODE_DESC_1_CONTENT { get; set; }
-        public string CODE_DESC_2_CONTENT { get; set; }
-        public string CODE_DESC_3_CONTENT { get; set; }
-        public string CODE_DESC_4_CONTENT { get; set; }
-        public string CODE_DESC_5_CONTENT { get; set; }
+        public string CODE_NAME { get; set; }
+        public short CODE_LEN { get; set; }
+        public short CODE_ACT_LEN { get; set; }
+        public string CODE_DESC_1_NAME { get; set; }
+        public short CODE_DESC_1_LEN { get; set; }
+        public string CODE_DESC_2_NAME { get; set; }
+        public short CODE_DESC_2_LEN { get; set; }
+        public string CODE_DESC_3_NAME { get; set; }
+        public short CODE_DESC_3_LEN { get; set; }
+        public string CODE_DESC_4_NAME { get; set; }
+        public short CODE_DESC_4_LEN { get; set; }
+        public string CODE_DESC_5_NAME { get; set; }
+        public short CODE_DESC_5_LEN { get; set; }
+        public string CODE_SOURCE { get; set; }
+        public string CODE_AUTH { get; set; }
     }
 }

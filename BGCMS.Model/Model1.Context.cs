@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BGCMS.Model
+namespace BGMES.Model
 {
     using System;
     using System.Data.Entity;
@@ -27,5 +27,6 @@ namespace BGCMS.Model
     
         public virtual DbSet<TTS0091> TTS0091 { get; set; }
         public virtual DbSet<TTS0092> TTS0092 { get; set; }
+        public virtual DbSet<TEPEP03> TEPEP03 { get; set; }
     }
 }

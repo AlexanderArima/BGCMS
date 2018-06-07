@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGMES.BLL", "BGCMS.BLL\BGME
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGMES.Model", "BGCMS.Model\BGMES.Model.csproj", "{9A24A366-D6E7-4C23-B332-F76C76464AD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGMES.DAL", "BGMES.DAL\BGMES.DAL.csproj", "{E7F1BADC-9164-4473-99BF-E082DFCDA3BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9A24A366-D6E7-4C23-B332-F76C76464AD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A24A366-D6E7-4C23-B332-F76C76464AD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A24A366-D6E7-4C23-B332-F76C76464AD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7F1BADC-9164-4473-99BF-E082DFCDA3BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7F1BADC-9164-4473-99BF-E082DFCDA3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7F1BADC-9164-4473-99BF-E082DFCDA3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7F1BADC-9164-4473-99BF-E082DFCDA3BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

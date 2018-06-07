@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BGMESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BGMESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--生成过程中发现错误:
 警告 6002: 表/视图“BGMES.dbo.TTS0091”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="TTS0091">
@@ -67,6 +67,50 @@
           <Property Name="CODE_SOURCE" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="CODE_AUTH" Type="varchar" MaxLength="4" Nullable="false" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“BGMES.dbo.TTS0092”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="TTS0092">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+            <PropertyRef Name="MT_ID" />
+            <PropertyRef Name="REC_CREATOR" />
+            <PropertyRef Name="REC_CREATE_TIME" />
+            <PropertyRef Name="REC_REVISOR" />
+            <PropertyRef Name="REC_REVISE_TIME" />
+            <PropertyRef Name="REC_DELETOR" />
+            <PropertyRef Name="REC_DELETE_TIME" />
+            <PropertyRef Name="DELETE_FLAG" />
+            <PropertyRef Name="ARCHIVE_FLAG" />
+            <PropertyRef Name="ARCHIVE_STAMP_NO" />
+            <PropertyRef Name="REMARK" />
+            <PropertyRef Name="CODE_CLASS" />
+            <PropertyRef Name="CODE" />
+            <PropertyRef Name="CODE_DESC_1_CONTENT" />
+            <PropertyRef Name="CODE_DESC_2_CONTENT" />
+            <PropertyRef Name="CODE_DESC_3_CONTENT" />
+            <PropertyRef Name="CODE_DESC_4_CONTENT" />
+            <PropertyRef Name="CODE_DESC_5_CONTENT" />
+          </Key>
+          <Property Name="REC_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MT_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="REC_CREATOR" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="REC_CREATE_TIME" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="REC_REVISOR" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="REC_REVISE_TIME" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="REC_DELETOR" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="REC_DELETE_TIME" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="DELETE_FLAG" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="ARCHIVE_FLAG" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="ARCHIVE_STAMP_NO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="REMARK" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CODE_CLASS" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CODE_DESC_1_CONTENT" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CODE_DESC_2_CONTENT" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CODE_DESC_3_CONTENT" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CODE_DESC_4_CONTENT" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CODE_DESC_5_CONTENT" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="BGMESModelStoreContainer">
           <EntitySet Name="TTS0091" EntityType="Self.TTS0091" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -100,9 +144,31 @@
     [TTS0091].[CODE_AUTH] AS [CODE_AUTH]
     FROM [dbo].[TTS0091] AS [TTS0091]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="TTS0092" EntityType="Self.TTS0092" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TTS0092].[REC_ID] AS [REC_ID], 
+    [TTS0092].[MT_ID] AS [MT_ID], 
+    [TTS0092].[REC_CREATOR] AS [REC_CREATOR], 
+    [TTS0092].[REC_CREATE_TIME] AS [REC_CREATE_TIME], 
+    [TTS0092].[REC_REVISOR] AS [REC_REVISOR], 
+    [TTS0092].[REC_REVISE_TIME] AS [REC_REVISE_TIME], 
+    [TTS0092].[REC_DELETOR] AS [REC_DELETOR], 
+    [TTS0092].[REC_DELETE_TIME] AS [REC_DELETE_TIME], 
+    [TTS0092].[DELETE_FLAG] AS [DELETE_FLAG], 
+    [TTS0092].[ARCHIVE_FLAG] AS [ARCHIVE_FLAG], 
+    [TTS0092].[ARCHIVE_STAMP_NO] AS [ARCHIVE_STAMP_NO], 
+    [TTS0092].[REMARK] AS [REMARK], 
+    [TTS0092].[CODE_CLASS] AS [CODE_CLASS], 
+    [TTS0092].[CODE] AS [CODE], 
+    [TTS0092].[CODE_DESC_1_CONTENT] AS [CODE_DESC_1_CONTENT], 
+    [TTS0092].[CODE_DESC_2_CONTENT] AS [CODE_DESC_2_CONTENT], 
+    [TTS0092].[CODE_DESC_3_CONTENT] AS [CODE_DESC_3_CONTENT], 
+    [TTS0092].[CODE_DESC_4_CONTENT] AS [CODE_DESC_4_CONTENT], 
+    [TTS0092].[CODE_DESC_5_CONTENT] AS [CODE_DESC_5_CONTENT]
+    FROM [dbo].[TTS0092] AS [TTS0092]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BGMESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -168,7 +234,50 @@
         </EntityType>
         <EntityContainer Name="BGMESEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TTS0091" EntityType="Self.TTS0091" />
+          <EntitySet Name="TTS0092" EntityType="BGMESModel.TTS0092" />
         </EntityContainer>
+        <EntityType Name="TTS0092">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+            <PropertyRef Name="MT_ID" />
+            <PropertyRef Name="REC_CREATOR" />
+            <PropertyRef Name="REC_CREATE_TIME" />
+            <PropertyRef Name="REC_REVISOR" />
+            <PropertyRef Name="REC_REVISE_TIME" />
+            <PropertyRef Name="REC_DELETOR" />
+            <PropertyRef Name="REC_DELETE_TIME" />
+            <PropertyRef Name="DELETE_FLAG" />
+            <PropertyRef Name="ARCHIVE_FLAG" />
+            <PropertyRef Name="ARCHIVE_STAMP_NO" />
+            <PropertyRef Name="REMARK" />
+            <PropertyRef Name="CODE_CLASS" />
+            <PropertyRef Name="CODE" />
+            <PropertyRef Name="CODE_DESC_1_CONTENT" />
+            <PropertyRef Name="CODE_DESC_2_CONTENT" />
+            <PropertyRef Name="CODE_DESC_3_CONTENT" />
+            <PropertyRef Name="CODE_DESC_4_CONTENT" />
+            <PropertyRef Name="CODE_DESC_5_CONTENT" />
+          </Key>
+          <Property Name="REC_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MT_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="REC_CREATOR" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="false" />
+          <Property Name="REC_CREATE_TIME" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="REC_REVISOR" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="false" />
+          <Property Name="REC_REVISE_TIME" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="REC_DELETOR" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="REC_DELETE_TIME" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="DELETE_FLAG" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ARCHIVE_FLAG" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ARCHIVE_STAMP_NO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="REMARK" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CODE_CLASS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CODE_DESC_1_CONTENT" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CODE_DESC_2_CONTENT" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CODE_DESC_3_CONTENT" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CODE_DESC_4_CONTENT" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CODE_DESC_5_CONTENT" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -206,6 +315,31 @@
                 <ScalarProperty Name="CODE_DESC_5_LEN" ColumnName="CODE_DESC_5_LEN" />
                 <ScalarProperty Name="CODE_SOURCE" ColumnName="CODE_SOURCE" />
                 <ScalarProperty Name="CODE_AUTH" ColumnName="CODE_AUTH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTS0092">
+            <EntityTypeMapping TypeName="BGMESModel.TTS0092">
+              <MappingFragment StoreEntitySet="TTS0092">
+                <ScalarProperty Name="CODE_DESC_5_CONTENT" ColumnName="CODE_DESC_5_CONTENT" />
+                <ScalarProperty Name="CODE_DESC_4_CONTENT" ColumnName="CODE_DESC_4_CONTENT" />
+                <ScalarProperty Name="CODE_DESC_3_CONTENT" ColumnName="CODE_DESC_3_CONTENT" />
+                <ScalarProperty Name="CODE_DESC_2_CONTENT" ColumnName="CODE_DESC_2_CONTENT" />
+                <ScalarProperty Name="CODE_DESC_1_CONTENT" ColumnName="CODE_DESC_1_CONTENT" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="CODE_CLASS" ColumnName="CODE_CLASS" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="ARCHIVE_STAMP_NO" ColumnName="ARCHIVE_STAMP_NO" />
+                <ScalarProperty Name="ARCHIVE_FLAG" ColumnName="ARCHIVE_FLAG" />
+                <ScalarProperty Name="DELETE_FLAG" ColumnName="DELETE_FLAG" />
+                <ScalarProperty Name="REC_DELETE_TIME" ColumnName="REC_DELETE_TIME" />
+                <ScalarProperty Name="REC_DELETOR" ColumnName="REC_DELETOR" />
+                <ScalarProperty Name="REC_REVISE_TIME" ColumnName="REC_REVISE_TIME" />
+                <ScalarProperty Name="REC_REVISOR" ColumnName="REC_REVISOR" />
+                <ScalarProperty Name="REC_CREATE_TIME" ColumnName="REC_CREATE_TIME" />
+                <ScalarProperty Name="REC_CREATOR" ColumnName="REC_CREATOR" />
+                <ScalarProperty Name="MT_ID" ColumnName="MT_ID" />
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

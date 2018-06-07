@@ -26,5 +26,6 @@ namespace BGCMS.Model
         }
     
         public virtual DbSet<TTS0091> TTS0091 { get; set; }
+        public virtual DbSet<TTS0092> TTS0092 { get; set; }
     }
 }

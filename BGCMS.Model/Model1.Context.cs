@@ -28,5 +28,6 @@ namespace BGMES.Model
         public virtual DbSet<TTS0091> TTS0091 { get; set; }
         public virtual DbSet<TTS0092> TTS0092 { get; set; }
         public virtual DbSet<TEPEP03> TEPEP03 { get; set; }
+        public virtual DbSet<TESUSERINFO> TESUSERINFOes { get; set; }
     }
 }

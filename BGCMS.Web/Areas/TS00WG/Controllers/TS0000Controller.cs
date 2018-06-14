@@ -14,6 +14,7 @@ namespace BGCMS.Web.Areas.TS00WG.Controllers
         public ActionResult Index()
         {
             ViewData["ListCodeData"] = _bll.GetCodeName();
+            ViewData["ListCode"] = _bll.GetAll();
             return View();
         }
 

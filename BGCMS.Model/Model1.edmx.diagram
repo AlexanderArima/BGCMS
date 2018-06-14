@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="BGMESModel.TTS0091" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BGMESModel.TTS0092" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="BGMESModel.TEPEP03" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BGMESModel.TESUSERINFO" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

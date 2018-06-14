@@ -67,6 +67,26 @@
           <Property Name="CODE_SOURCE" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="CODE_AUTH" Type="varchar" MaxLength="4" Nullable="false" />
         </EntityType>
+        <EntityType Name="TESUSERINFO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="ENAME" Type="varchar" MaxLength="32" />
+          <Property Name="CNAME" Type="varchar" MaxLength="50" />
+          <Property Name="KEYVALUE" Type="varchar" MaxLength="100" />
+          <Property Name="ISENABLE" Type="smallint" />
+          <Property Name="DEPTID" Type="bigint" />
+          <Property Name="TREENO" Type="bigint" />
+          <Property Name="TIMETIRED" Type="varchar" MaxLength="50" />
+          <Property Name="PASSWD_PERIOD" Type="smallint" />
+          <Property Name="APPNAME" Type="varchar" MaxLength="18" />
+          <Property Name="PER_MONITORSTARTTIME" Type="varchar" MaxLength="50" />
+          <Property Name="TEM_MONITORSTARTTIME" Type="varchar" MaxLength="50" />
+          <Property Name="LAST_ERRORTIME" Type="varchar" MaxLength="50" />
+          <Property Name="PER_ERRORCOUNT" Type="int" />
+          <Property Name="TEM_ERRORCOUNT" Type="int" />
+        </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“BGMES.dbo.TTS0091”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="TTS0091">
@@ -174,6 +194,7 @@
           <Property Name="CODE_DESC_5_CONTENT" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityContainer Name="BGMESModelStoreContainer">
+          <EntitySet Name="TESUSERINFO" EntityType="Self.TESUSERINFO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TEPEP03" EntityType="Self.TEPEP03" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [TEPEP03].[REC_ID] AS [REC_ID], 
@@ -330,6 +351,7 @@
           <EntitySet Name="TTS0091" EntityType="Self.TTS0091" />
           <EntitySet Name="TTS0092" EntityType="BGMESModel.TTS0092" />
           <EntitySet Name="TEPEP03" EntityType="BGMESModel.TEPEP03" />
+          <EntitySet Name="TESUSERINFOes" EntityType="BGMESModel.TESUSERINFO" />
         </EntityContainer>
         <EntityType Name="TTS0092">
           <Key>
@@ -433,6 +455,26 @@
           <Property Name="CODE_SOURCE" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="CODE_AUTH" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="TESUSERINFO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ENAME" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="CNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KEYVALUE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ISENABLE" Type="Int16" />
+          <Property Name="DEPTID" Type="Int64" />
+          <Property Name="TREENO" Type="Int64" />
+          <Property Name="TIMETIRED" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWD_PERIOD" Type="Int16" />
+          <Property Name="APPNAME" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="PER_MONITORSTARTTIME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TEM_MONITORSTARTTIME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_ERRORTIME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PER_ERRORCOUNT" Type="Int32" />
+          <Property Name="TEM_ERRORCOUNT" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -529,6 +571,27 @@
                 <ScalarProperty Name="REC_CREATOR" ColumnName="REC_CREATOR" />
                 <ScalarProperty Name="MT_ID" ColumnName="MT_ID" />
                 <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TESUSERINFOes">
+            <EntityTypeMapping TypeName="BGMESModel.TESUSERINFO">
+              <MappingFragment StoreEntitySet="TESUSERINFO">
+                <ScalarProperty Name="TEM_ERRORCOUNT" ColumnName="TEM_ERRORCOUNT" />
+                <ScalarProperty Name="PER_ERRORCOUNT" ColumnName="PER_ERRORCOUNT" />
+                <ScalarProperty Name="LAST_ERRORTIME" ColumnName="LAST_ERRORTIME" />
+                <ScalarProperty Name="TEM_MONITORSTARTTIME" ColumnName="TEM_MONITORSTARTTIME" />
+                <ScalarProperty Name="PER_MONITORSTARTTIME" ColumnName="PER_MONITORSTARTTIME" />
+                <ScalarProperty Name="APPNAME" ColumnName="APPNAME" />
+                <ScalarProperty Name="PASSWD_PERIOD" ColumnName="PASSWD_PERIOD" />
+                <ScalarProperty Name="TIMETIRED" ColumnName="TIMETIRED" />
+                <ScalarProperty Name="TREENO" ColumnName="TREENO" />
+                <ScalarProperty Name="DEPTID" ColumnName="DEPTID" />
+                <ScalarProperty Name="ISENABLE" ColumnName="ISENABLE" />
+                <ScalarProperty Name="KEYVALUE" ColumnName="KEYVALUE" />
+                <ScalarProperty Name="CNAME" ColumnName="CNAME" />
+                <ScalarProperty Name="ENAME" ColumnName="ENAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

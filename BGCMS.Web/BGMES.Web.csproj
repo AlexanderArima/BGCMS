@@ -342,6 +342,10 @@
       <Project>{4f38ca9b-f4d8-420f-af1b-7c0db298a912}</Project>
       <Name>BGMES.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BGCMS.Model\BGMES.Model.csproj">
+      <Project>{9a24a366-d6e7-4c23-b332-f76c76464ad7}</Project>
+      <Name>BGMES.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

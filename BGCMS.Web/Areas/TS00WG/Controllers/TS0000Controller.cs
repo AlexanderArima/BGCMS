@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BGMES.Model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,11 +13,23 @@ namespace BGCMS.Web.Areas.TS00WG.Controllers
         public static BGMES.BLL.TS0000 _bll = new BGMES.BLL.TS0000();
         //
         // GET: /TS00WG/TS0000/
+        [HttpGet]
         public ActionResult Index()
         {
             ViewData["ListCodeData"] = _bll.GetCodeName();
-            ViewData["ListCode"] = _bll.GetAll();
+            var dict = _bll.GetAll(10);
+            var TTS0091 = dict["TTS0091"] as IList<TTS0091>;
+            ViewData["ListCode"] = TTS0091;
+            ViewData["Count"] = dict["Count"];
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult Index(int index)
+        {
+            index--;
+            var ListCode = _bll.Get(10,index);
+            return Json(ListCode, JsonRequestBehavior.DenyGet);
         }
 
         //

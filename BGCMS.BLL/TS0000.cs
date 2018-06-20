@@ -24,11 +24,23 @@ namespace BGMES.BLL
         /// 代码列表
         /// </summary>
         /// <returns></returns>
-        public IList<BGMES.Model.TTS0091> GetAll()
+        public Dictionary<string, object> GetAll(int count)
         {
-            //加入过滤条件，返回列表
-            return _dal.GetAll();
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            dict.Add("TTS0091", _dal.GetAll(count));
+            dict.Add("Count", _dal.Count());
+            return dict;
         }
+
+        /// <summary>
+        /// 代码列表
+        /// </summary>
+        /// <returns></returns>
+        public IList<TTS0091> Get(int count,int index)
+        {
+            return _dal.GetAll(count, index);
+        }
+
 
         /// <summary>
         /// 下拉菜单的大类列表

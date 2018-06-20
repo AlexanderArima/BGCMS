@@ -34,7 +34,7 @@
                     <li class="layui-nav-item"><a href="">社区</a></li>
                 </ul>
             </div>
-            
+
             <div class="layui-col-md2">
                 <!--侧边导航 -->
                 <ul class="layui-nav layui-nav-tree" lay-filter="test" style="width:170px">
@@ -88,7 +88,7 @@
                                     <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
-                            
+
                         </div>
                     </form>
                 </fieldset>
@@ -97,7 +97,7 @@
                         <div class="layui-form-item" style="margin:2px">
                             <div class="layui-inline">
                                 <div class="layui-btn-group">
-                                    <button class="layui-btn layui-btn-normal" onclick="Query()">查询</button>
+                                    <button class="layui-btn layui-btn-normal" id="buttonQuery" onclick="Query()">查询</button>
                                     <button class="layui-btn layui-btn-normal">新增</button>
                                     <button class="layui-btn layui-btn-normal">修改</button>
                                     <button class="layui-btn layui-btn-normal">删除</button>
@@ -141,22 +141,29 @@
                                         <th>修改时间</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @for(int i = 0;i < ListCode.Count;i++)
+                                <tbody id="bodyCodeList">
+                                    @for (int i = 0; i < ListCode.Count; i++)
                                     {
-                                    <tr>
-                                        <td>@ListCode[i].CODE_CLASS</td>
-                                        <td>@ListCode[i].CODE_NAME</td>
-                                        <td>@ListCode[i].CODE_ACT_LEN</td>
-                                        <td>@ListCode[i].CODE_SOURCE</td>
-                                        <td>@ListCode[i].CODE_AUTH</td>
-                                        <td>@ListCode[i].REC_CREATOR</td>
-                                        <td>@ListCode[i].REC_CREATE_TIME</td>
-                                        <td>@ListCode[i].REC_REVISOR</td>
-                                        <td>@ListCode[i].REC_REVISE_TIME</td>
-                                    </tr>
+                                        <tr>
+                                            <td>@ListCode[i].CODE_CLASS</td>
+                                            <td>@ListCode[i].CODE_NAME</td>
+                                            <td>@ListCode[i].CODE_ACT_LEN</td>
+                                            <td>@ListCode[i].CODE_SOURCE</td>
+                                            <td>@ListCode[i].CODE_AUTH</td>
+                                            <td>@ListCode[i].REC_CREATOR</td>
+                                            <td>@ListCode[i].REC_CREATE_TIME</td>
+                                            <td>@ListCode[i].REC_REVISOR</td>
+                                            <td>@ListCode[i].REC_REVISE_TIME</td>
+                                        </tr>
                                     }
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="9">
+                                            <div id="test1"></div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                         <div class="layui-tab-item">
@@ -192,25 +199,56 @@
             </div>
         </div>
     </div>
-       
-            
+    <!-- 功能界面 -->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/layui/layui.all.js"></script>
+    <script>
         
-        <!-- 功能界面 -->
-        
-            
-        <script src="~/Scripts/layui/layui.all.js"></script>
-        <script>
-            //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
-            ;!function () {
-                var layer = layui.layer,
-                    form = layui.form;
-                
-            }();
+        //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
+        ;!function () {
+            var layer = layui.layer,
+            form = layui.form,
+            laypage = layui.laypage;
 
-            function Query()
-            {
-                layer.msg("查询", { time: 2000, icon: 1});
-            }
-        </script>
+            
+            laypage.render({
+                elem: 'test1',  //注意，这里的 test1 是 ID，不用加 # 号
+                count: @ViewData["Count"],  //数据总数，从服务端得到
+                jump: function (obj, first) {
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //首次不执行
+                    if (!first) {
+                        //do something
+                        $.post("Index",{"index":obj.curr},function(data){
+                            var bodyCodeList = $("#bodyCodeList tr");
+                            bodyCodeList.remove();
+                            for(var i = 0;i < data.length;i++)
+                            {
+                                $("#bodyCodeList").append("<tr><td>"+ data[i].CODE_CLASS +
+                                    "</td><td>"+ data[i].CODE_NAME +
+                                    "</td><td>"+ data[i].CODE_ACT_LEN + 
+                                    "</td><td>"+ data[i].CODE_SOURCE + 
+                                    "</td><td>"+ data[i].CODE_AUTH + 
+                                    "</td><td>"+ data[i].REC_CREATOR + 
+                                    "</td><td>"+ data[i].REC_CREATE_TIME + 
+                                    "</td><td>"+ data[i].REC_REVISOR + 
+                                    "</td><td>"+ data[i].REC_REVISE_TIME + 
+                                    "</td></tr>");
+                            }
+                            console.log(data);
+                        });
+                    }
+                }
+            });
+        }();
+
+        function Query()
+        {
+            layer.msg("查询", { time: 2000, icon: 1});
+        }
+    </script>
 </body>
 </html>

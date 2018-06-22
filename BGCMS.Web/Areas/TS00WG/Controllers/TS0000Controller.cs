@@ -11,8 +11,11 @@ namespace BGCMS.Web.Areas.TS00WG.Controllers
     public class TS0000Controller : Controller
     {
         public static BGMES.BLL.TS0000 _bll = new BGMES.BLL.TS0000();
-        //
-        // GET: /TS00WG/TS0000/
+
+        /// <summary>
+        /// 首次加载
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Index()
         {
@@ -24,6 +27,11 @@ namespace BGCMS.Web.Areas.TS00WG.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Ajax提交分页
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult Index(int index)
         {
@@ -31,12 +39,17 @@ namespace BGCMS.Web.Areas.TS00WG.Controllers
             var ListCode = _bll.Get(10,index);
             return Json(ListCode, JsonRequestBehavior.DenyGet);
         }
-
-        //
-        // GET: /TS00WG/TS0000/Details/5
-        public ActionResult Details(int id)
+        
+        /// <summary>
+        /// 查看代码详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public JsonResult Detail(string CodeClass)
         {
-            return View();
+            var list = _bll.GetTTS0092(CodeClass);
+            return Json(list,JsonRequestBehavior.AllowGet);
         }
 
         //

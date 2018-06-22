@@ -109,30 +109,32 @@
                         </div>
                     </form>
                 </fieldset>
-                <div class="layui-tab">
+                <div class="layui-tab" lay-filter="tab">
                     <ul class="layui-tab-title">
-                        <li class="layui-this">代码列表</li>
-                        <li>代码明细</li>
+                        <li class="layui-this" lay-id="111">代码列表</li>
+                        <li lay-id="222">代码明细</li>
                     </ul>
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show">
                             <table class="layui-table">
                                 <colgroup>
-                                    <col width="150">
-                                    <col width="170">
-                                    <col width="260">
+                                    <col width="40">
+                                    <col width="100">
                                     <col width="150">
                                     <col width="150">
                                     <col width="100">
-                                    <col width="150">
+                                    <col width="100">
                                     <col width="100">
                                     <col width="150">
+                                    <col width="100">
+                                    <col />
                                 </colgroup>
                                 <thead>
                                     <tr>
+                                        <th><input type="checkbox" name="" lay-skin="primary"></th>
                                         <th>代码编号</th>
                                         <th>代码名称</th>
-                                        <th>代码实际使用长度</th>
+                                        <th>代码实际长度</th>
                                         <th>代码来源</th>
                                         <th>代码权限</th>
                                         <th>创建人</th>
@@ -145,7 +147,8 @@
                                     @for (int i = 0; i < ListCode.Count; i++)
                                     {
                                         <tr>
-                                            <td>@ListCode[i].CODE_CLASS</td>
+                                            <td><input type="checkbox" name="" lay-skin="primary"></td>
+                                            <td><a href="javascript:void(0)">@ListCode[i].CODE_CLASS</a></td>
                                             <td>@ListCode[i].CODE_NAME</td>
                                             <td>@ListCode[i].CODE_ACT_LEN</td>
                                             <td>@ListCode[i].CODE_SOURCE</td>
@@ -159,7 +162,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="9">
+                                        <td colspan="10">
                                             <div id="test1"></div>
                                         </td>
                                     </tr>
@@ -169,27 +172,40 @@
                         <div class="layui-tab-item">
                             <table class="layui-table">
                                 <colgroup>
+                                    <col width="40">
+                                    <col width="100">
+                                    <col width="80">
+                                    <col width="100">
+                                    <col width="100">
+                                    <col width="100">
                                     <col width="150">
-                                    <col width="200">
+                                    <col width="100">
                                     <col>
                                 </colgroup>
-                                <thead>
+                                <thead id="headDetail">
                                     <tr>
-                                        <th>昵称</th>
-                                        <th>加入时间</th>
-                                        <th>签名</th>
+                                        <th><input type="checkbox" name="" lay-skin="primary"></th>
+                                        <th>代码编号</th>
+                                        <th>代码</th>
+                                        <th>车种类型</th>
+                                        <th>排列顺序</th>
+                                        <th>创建人</th>
+                                        <th>创建时间</th>
+                                        <th>修改人</th>
+                                        <th>修改时间</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="bodyDetail">
                                     <tr>
-                                        <td>贤心</td>
-                                        <td>2016-11-29</td>
-                                        <td>人生就像是一场修行</td>
-                                    </tr>
-                                    <tr>
-                                        <td>许闲心</td>
-                                        <td>2016-11-28</td>
-                                        <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+                                        <th><input type="checkbox" name="" lay-skin="primary"></th>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -208,9 +224,9 @@
         ;!function () {
             var layer = layui.layer,
             form = layui.form,
-            laypage = layui.laypage;
+            laypage = layui.laypage,
+            element = layui.element;
 
-            
             laypage.render({
                 elem: 'test1',  //注意，这里的 test1 是 ID，不用加 # 号
                 count: @ViewData["Count"],  //数据总数，从服务端得到
@@ -227,7 +243,7 @@
                             bodyCodeList.remove();
                             for(var i = 0;i < data.length;i++)
                             {
-                                $("#bodyCodeList").append("<tr><td>"+ data[i].CODE_CLASS +
+                                $("#bodyCodeList").append("<tr><td><input type='checkbox' name='' lay-skin='primary'></td><td>"+ data[i].CODE_CLASS +
                                     "</td><td>"+ data[i].CODE_NAME +
                                     "</td><td>"+ data[i].CODE_ACT_LEN + 
                                     "</td><td>"+ data[i].CODE_SOURCE + 
@@ -239,10 +255,48 @@
                                     "</td></tr>");
                             }
                             console.log(data);
+                            //显示详情  
+                            $("#bodyCodeList").children("tr").on("click",ShowDetail);
                         });
                     }
                 }
             });
+
+            //显示详情  
+            $("#bodyCodeList").children("tr").on("click",ShowDetail);
+
+            function ShowDetail(obj){
+                var CodeClass = obj.currentTarget.cells[1].innerText;
+                var CODE_NAME = obj.currentTarget.cells[2].innerText;
+                //显示代码明细
+                $("#bodyDetail tr").remove();
+                $.ajax({  
+                    url : 'Detail',  
+                    data : {  
+                        "CodeClass":CodeClass
+                    },  
+                    dataType : "json",  
+                    success:function(data)
+                    {  
+                        //修改头部标题
+                        $("#headDetail th").eq(3).text(CODE_NAME);
+                        for(var i = 0;i < data.length;i++)
+                        {
+                            $("#bodyDetail").append("<tr><td><input type='checkbox' name='' lay-skin='primary'></td><td>"+ data[i].CODE_CLASS +
+                                        "</td><td>"+ data[i].CODE +
+                                        "</td><td>"+ data[i].CODE_DESC_1_CONTENT + 
+                                        "</td><td>"+
+                                        "</td><td>"+ data[i].REC_CREATOR + 
+                                        "</td><td>"+ data[i].REC_CREATE_TIME + 
+                                        "</td><td>"+ data[i].REC_REVISOR + 
+                                        "</td><td>"+ data[i].REC_REVISE_TIME + 
+                                        "</td></tr>");
+                        }
+                        //element.tabChange("tab", "222");
+                    }  
+                });
+            }
+
         }();
 
         function Query()

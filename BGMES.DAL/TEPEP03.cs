@@ -1,4 +1,5 @@
 ﻿using BGMES.Model;
+using BGMES.Model.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace BGMES.DAL
             {
                 var query = from a in db.TEPEP03
                             where a.DELETE_FLAG == " " && a.CODE_CLASS == Code_Class
-                            select new
+                            select new MyDict
                             {
                                 CODE_NAME = a.CODE_NAME,
                                 CODE_DESC_1_NAME = a.CODE_DESC_1_NAME

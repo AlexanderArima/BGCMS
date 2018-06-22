@@ -49,8 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TEPEP03.cs" />
-    <Compile Include="TS0000.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TESUSERINFO.cs" />
+    <Compile Include="TTS0091.cs" />
+    <Compile Include="TTS0092.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BGCMS.Model\BGMES.Model.csproj">

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using BGMES.Model;
 
 namespace BGMES.BLL
@@ -67,6 +68,7 @@ namespace BGMES.BLL
             var UserInfo = _bllTESUSERINFO.GetAll();
             for (int i = 0; i < TTS0091.Count; i++)
             {
+                //用户名
                 for (int j = 0; j < UserInfo.Count; j++)
                 {
                     int flag = 2;
@@ -83,6 +85,9 @@ namespace BGMES.BLL
                     if (flag == 0)
                         break;
                 }
+                //新增，修改时间
+                TTS0091[i].REC_CREATE_TIME = TTS0091[i].REC_CREATE_TIME.Insert(4, "-").Insert(7, "-").Insert(10," ").Insert(13,":").Insert(16,":");
+                TTS0091[i].REC_REVISE_TIME = TTS0091[i].REC_REVISE_TIME.Insert(4, "-").Insert(7, "-").Insert(10, " ").Insert(13, ":").Insert(16, ":");
             }
             return TTS0091;
         }
@@ -94,7 +99,17 @@ namespace BGMES.BLL
         /// <returns></returns>
         public IDictionary<string, object> GetCodeName()
         {
-             return _dalTEPEP03.Get("TS01");
+            var TS01 = HttpRuntime.Cache.Get("TS01");
+            if (TS01 == null)
+            {
+                var dict = _dalTEPEP03.Get("TS01");
+                Common.XCache.Add("TS01", dict);
+                return dict;
+            }
+            else
+            {
+                return (IDictionary<string, object>)TS01;
+            }
         }
     }
 }

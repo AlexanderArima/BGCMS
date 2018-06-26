@@ -67,7 +67,7 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">大类</label>
                                 <div class="layui-input-inline">
-                                    <select name="modules" lay-verify="required">
+                                    <select name="SelectTS01" lay-verify="required">
                                         <option value=""></option>
                                         @for (int i = 0; i < DictCodeData.Count; i++)
                                         {
@@ -110,107 +110,125 @@
                     </form>
                 </fieldset>
                 <div class="layui-tab" lay-filter="tab">
-                    <ul class="layui-tab-title">
-                        <li class="layui-this" lay-id="111">代码列表</li>
-                        <li lay-id="222">代码明细</li>
-                    </ul>
-                    <div class="layui-tab-content">
-                        <div class="layui-tab-item layui-show">
-                            <table class="layui-table">
-                                <colgroup>
-                                    <col width="40">
-                                    <col width="100">
-                                    <col width="150">
-                                    <col width="150">
-                                    <col width="100">
-                                    <col width="100">
-                                    <col width="100">
-                                    <col width="150">
-                                    <col width="100">
-                                    <col />
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <th><input type="checkbox" name="" lay-skin="primary"></th>
-                                        <th>代码编号</th>
-                                        <th>代码名称</th>
-                                        <th>代码实际长度</th>
-                                        <th>代码来源</th>
-                                        <th>代码权限</th>
-                                        <th>创建人</th>
-                                        <th>创建时间</th>
-                                        <th>修改人</th>
-                                        <th>修改时间</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="bodyCodeList">
-                                    @for (int i = 0; i < ListCode.Count; i++)
-                                    {
+                    <form class="layui-form" action="">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this" lay-id="111">代码列表</li>
+                            <li lay-id="222">代码明细</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <table class="layui-table">
+                                    <colgroup>
+                                        <col width="40">
+                                        <col width="90">
+                                        <col width="90">
+                                        <col width="80">
+                                        <col width="130">
+                                        <col width="100">
+                                        <col width="80">
+                                        <col width="120">
+                                        <col width="80">
+                                        <col />
+                                    </colgroup>
+                                    <thead>
                                         <tr>
-                                            <td><input type="checkbox" name="" lay-skin="primary"></td>
-                                            <td><a href="javascript:void(0)">@ListCode[i].CODE_CLASS</a></td>
-                                            <td>@ListCode[i].CODE_NAME</td>
-                                            <td>@ListCode[i].CODE_ACT_LEN</td>
-                                            <td>@ListCode[i].CODE_SOURCE</td>
-                                            <td>@ListCode[i].CODE_AUTH</td>
-                                            <td>@ListCode[i].REC_CREATOR</td>
-                                            <td>@ListCode[i].REC_CREATE_TIME</td>
-                                            <td>@ListCode[i].REC_REVISOR</td>
-                                            <td>@ListCode[i].REC_REVISE_TIME</td>
+                                            <th><input type="checkbox" name="" lay-skin="primary"></th>
+                                            <th>代码编号</th>
+                                            <th>代码名称</th>
+                                            <th>代码实际长度</th>
+                                            <th>代码来源</th>
+                                            <th>代码权限</th>
+                                            <th>创建人</th>
+                                            <th>创建时间</th>
+                                            <th>修改人</th>
+                                            <th>修改时间</th>
                                         </tr>
-                                    }
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="10">
-                                            <div id="test1"></div>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                                    </thead>
+                                    <tbody id="bodyCodeList">
+                                        @for (int i = 0; i < ListCode.Count; i++)
+                                        {
+                                            <tr>
+                                                <td><input type="checkbox" name="" lay-skin="primary"></td>
+                                                <td><a href="javascript:void(0)">@ListCode[i].CODE_CLASS</a></td>
+                                                <td>@ListCode[i].CODE_NAME</td>
+                                                <td>@ListCode[i].CODE_ACT_LEN</td>
+                                                <td>
+                                                    @*@ListCode[i].CODE_SOURCE*@
+                                                    <select name="TS01_@i" lay-verify="required">
+                                                        <option value=""></option>
+                                                        @for (int j = 0; j < DictCodeData.Count; j++)
+                                                        {
+                                                            if (@DictCodeData.Keys.ElementAt(j) == ListCode.ElementAt(i).CODE_SOURCE)
+                                                            {
+                                                                <option value="@DictCodeData.Keys.ElementAt(j)" selected>@DictCodeData.Values.ElementAt(j)</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@DictCodeData.Keys.ElementAt(j)">@DictCodeData.Values.ElementAt(j)</option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </td>
+                                                <td>@ListCode[i].CODE_AUTH</td>
+                                                <td>@ListCode[i].REC_CREATOR</td>
+                                                <td>@ListCode[i].REC_CREATE_TIME</td>
+                                                <td>@ListCode[i].REC_REVISOR</td>
+                                                <td>@ListCode[i].REC_REVISE_TIME</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="10">
+                                                <div id="test1"></div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="layui-tab-item">
+                                <table class="layui-table">
+                                    <colgroup>
+                                        <col width="40">
+                                        <col width="100">
+                                        <col width="80">
+                                        <col width="100">
+                                        <col width="100">
+                                        <col width="100">
+                                        <col width="150">
+                                        <col width="100">
+                                        <col>
+                                    </colgroup>
+                                    <thead id="headDetail">
+                                        <tr>
+                                            <th><input type="checkbox" name="" lay-skin="primary"></th>
+                                            <th>代码编号</th>
+                                            <th>代码</th>
+                                            <th>车种类型</th>
+                                            <th>排列顺序</th>
+                                            <th>创建人</th>
+                                            <th>创建时间</th>
+                                            <th>修改人</th>
+                                            <th>修改时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bodyDetail">
+                                        <tr>
+                                            <th><input type="checkbox" name="" lay-skin="primary"></th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="layui-tab-item">
-                            <table class="layui-table">
-                                <colgroup>
-                                    <col width="40">
-                                    <col width="100">
-                                    <col width="80">
-                                    <col width="100">
-                                    <col width="100">
-                                    <col width="100">
-                                    <col width="150">
-                                    <col width="100">
-                                    <col>
-                                </colgroup>
-                                <thead id="headDetail">
-                                    <tr>
-                                        <th><input type="checkbox" name="" lay-skin="primary"></th>
-                                        <th>代码编号</th>
-                                        <th>代码</th>
-                                        <th>车种类型</th>
-                                        <th>排列顺序</th>
-                                        <th>创建人</th>
-                                        <th>创建时间</th>
-                                        <th>修改人</th>
-                                        <th>修改时间</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="bodyDetail">
-                                    <tr>
-                                        <th><input type="checkbox" name="" lay-skin="primary"></th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -226,6 +244,8 @@
             form = layui.form,
             laypage = layui.laypage,
             element = layui.element;
+
+            var SelectTS01 = $("select[name='SelectTS01']").parent();
 
             laypage.render({
                 elem: 'test1',  //注意，这里的 test1 是 ID，不用加 # 号
@@ -243,10 +263,16 @@
                             bodyCodeList.remove();
                             for(var i = 0;i < data.length;i++)
                             {
+                                SelectTS01.find("option").each(function(index,element){
+                                    if(element.value == data[i].CODE_SOURCE){
+                                        console.log(element);
+                                        element.setAttribute("selected","selected");
+                                    }
+                                });
                                 $("#bodyCodeList").append("<tr><td><input type='checkbox' name='' lay-skin='primary'></td><td>"+ data[i].CODE_CLASS +
                                     "</td><td>"+ data[i].CODE_NAME +
                                     "</td><td>"+ data[i].CODE_ACT_LEN + 
-                                    "</td><td>"+ data[i].CODE_SOURCE + 
+                                    "</td><td>"+ SelectTS01.html()+
                                     "</td><td>"+ data[i].CODE_AUTH + 
                                     "</td><td>"+ data[i].REC_CREATOR + 
                                     "</td><td>"+ data[i].REC_CREATE_TIME + 
@@ -254,6 +280,7 @@
                                     "</td><td>"+ data[i].REC_REVISE_TIME + 
                                     "</td></tr>");
                             }
+                            form.render('select');//重新渲染下拉菜单
                             console.log(data);
                             //显示详情  
                             $("#bodyCodeList").children("tr").on("click",ShowDetail);
@@ -264,6 +291,8 @@
 
             //显示详情  
             $("#bodyCodeList").children("tr").on("click",ShowDetail);
+
+            
 
             function ShowDetail(obj){
                 var CodeClass = obj.currentTarget.cells[1].innerText;

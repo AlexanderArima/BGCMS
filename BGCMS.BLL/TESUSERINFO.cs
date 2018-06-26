@@ -22,11 +22,7 @@ namespace BGMES.BLL
             if (UserInfo == null)
             {
                 var list = _dalTTS0091.GetAll();
-                var obj = HttpRuntime.Cache.Add("UserInfo", list, null,
-                    DateTime.Now.AddMinutes(20),
-                    System.Web.Caching.Cache.NoSlidingExpiration,
-                    System.Web.Caching.CacheItemPriority.AboveNormal, null);
-                
+                Common.XCache.Add("UserInfo", list);
                 return list;
             }
             else

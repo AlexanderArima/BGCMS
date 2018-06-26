@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGMES.Web", "BGCMS.Web\BGMES.Web.csproj", "{14EA698C-FF00-4C3C-9056-2228A1BD7600}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGMES.Model", "BGCMS.Model\BGMES.Model.csproj", "{9A24A366-D6E7-4C23-B332-F76C76464AD7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGMES.DAL", "BGMES.DAL\BGMES.DAL.csproj", "{E7F1BADC-9164-4473-99BF-E082DFCDA3BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGMES.Common", "BGMES.Common\BGMES.Common.csproj", "{2C1AA152-3661-4ABE-8345-A953FD91B9DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{E7F1BADC-9164-4473-99BF-E082DFCDA3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7F1BADC-9164-4473-99BF-E082DFCDA3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7F1BADC-9164-4473-99BF-E082DFCDA3BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C1AA152-3661-4ABE-8345-A953FD91B9DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C1AA152-3661-4ABE-8345-A953FD91B9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C1AA152-3661-4ABE-8345-A953FD91B9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C1AA152-3661-4ABE-8345-A953FD91B9DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA6C6484-8707-485B-B011-BABED4D5D8ED}
 	EndGlobalSection
 EndGlobal

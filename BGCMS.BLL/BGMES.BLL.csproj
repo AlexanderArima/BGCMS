@@ -49,6 +49,10 @@
       <Project>{9a24a366-d6e7-4c23-b332-f76c76464ad7}</Project>
       <Name>BGMES.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BGMES.Common\BGMES.Common.csproj">
+      <Project>{2c1aa152-3661-4abe-8345-a953fd91b9de}</Project>
+      <Name>BGMES.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BGMES.DAL\BGMES.DAL.csproj">
       <Project>{e7f1badc-9164-4473-99bf-e082dfcda3bb}</Project>
       <Name>BGMES.DAL</Name>

@@ -71,7 +71,14 @@
                                         <option value=""></option>
                                         @for (int i = 0; i < DictCodeData.Count; i++)
                                         {
-                                            <option value="@DictCodeData.Keys.ElementAt(i)">@DictCodeData.Values.ElementAt(i)</option>
+                                            if (Request["CODE_SOURCE"] == @DictCodeData.Keys.ElementAt(i).ToString())
+                                            {
+                                                <option value="@DictCodeData.Keys.ElementAt(i)" selected>@DictCodeData.Values.ElementAt(i)</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@DictCodeData.Keys.ElementAt(i)">@DictCodeData.Values.ElementAt(i)</option>
+                                            }
                                         }
                                     </select>
                                 </div>
@@ -79,13 +86,13 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">代码编号</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="date" id="date" lay-verify="date" autocomplete="off" class="layui-input">
+                                    <input type="text" name="date" id="TextCODE_CLASS" value="@Request["CODE_CLASS"]" lay-verify="date" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-inline">
                                 <label class="layui-form-label">代码名称</label>
                                 <div class="layui-input-inline">
-                                    <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input">
+                                    <input type="tel" name="url" id="TextCODE_NAME" value="@Request["CODE_NAME"]"  lay-verify="url" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
 
@@ -148,7 +155,7 @@
                                         @for (int i = 0; i < ListCode.Count; i++)
                                         {
                                             <tr>
-                                                <td><input type="checkbox" name="" lay-skin="primary"></td>
+                                                <td><input type="checkbox" lay-skin="primary"></td>
                                                 <td><a href="javascript:void(0)">@ListCode[i].CODE_CLASS</a></td>
                                                 <td>@ListCode[i].CODE_NAME</td>
                                                 <td>@ListCode[i].CODE_ACT_LEN</td>
@@ -245,7 +252,7 @@
             laypage = layui.laypage,
             element = layui.element;
 
-            var SelectTS01 = $("select[name='SelectTS01']").parent();
+            var SelectTS01 = $("select[name='SelectTS01']").parent().clone();
 
             laypage.render({
                 elem: 'test1',  //注意，这里的 test1 是 ID，不用加 # 号
@@ -257,34 +264,46 @@
 
                     //首次不执行
                     if (!first) {
-                        //do something
-                        $.post("Index",{"index":obj.curr},function(data){
-                            var bodyCodeList = $("#bodyCodeList tr");
-                            bodyCodeList.remove();
-                            for(var i = 0;i < data.length;i++)
-                            {
-                                SelectTS01.find("option").each(function(index,element){
-                                    if(element.value == data[i].CODE_SOURCE){
-                                        console.log(element);
-                                        element.setAttribute("selected","selected");
+                        //筛选条件
+                        var CODE_SOURCE = $("select[name='SelectTS01']").val();
+                        var CODE_NAME = $("#TextCODE_NAME").val();
+                        var CODE_CLASS = $("#TextCODE_CLASS").val();
+                        $.post("Index",
+                               {
+                                   "index":obj.curr,
+                                   "CODE_SOURCE":CODE_SOURCE,
+                                   "CODE_NAME":CODE_NAME,
+                                   "CODE_CLASS":CODE_CLASS
+                               },
+                               function(data)
+                               {
+                                    var bodyCodeList = $("#bodyCodeList tr");
+                                    bodyCodeList.remove();
+                                    for(var i = 0;i < data.length;i++)
+                                    {
+                                        SelectTS01.find("option").each(function(index,element){
+                                            if(element.value == data[i].CODE_SOURCE){
+                                                console.log(element);
+                                                element.setAttribute("selected","selected");
+                                            }
+                                        });
+                                        $("#bodyCodeList").append("<tr><td><input type='checkbox' lay-skin='primary'></td><td>"+ data[i].CODE_CLASS +
+                                            "</td><td>"+ data[i].CODE_NAME +
+                                            "</td><td>"+ data[i].CODE_ACT_LEN + 
+                                            "</td><td>"+ SelectTS01.html()+
+                                            "</td><td>"+ data[i].CODE_AUTH + 
+                                            "</td><td>"+ data[i].REC_CREATOR + 
+                                            "</td><td>"+ data[i].REC_CREATE_TIME + 
+                                            "</td><td>"+ data[i].REC_REVISOR + 
+                                            "</td><td>"+ data[i].REC_REVISE_TIME + 
+                                            "</td></tr>");
                                     }
-                                });
-                                $("#bodyCodeList").append("<tr><td><input type='checkbox' name='' lay-skin='primary'></td><td>"+ data[i].CODE_CLASS +
-                                    "</td><td>"+ data[i].CODE_NAME +
-                                    "</td><td>"+ data[i].CODE_ACT_LEN + 
-                                    "</td><td>"+ SelectTS01.html()+
-                                    "</td><td>"+ data[i].CODE_AUTH + 
-                                    "</td><td>"+ data[i].REC_CREATOR + 
-                                    "</td><td>"+ data[i].REC_CREATE_TIME + 
-                                    "</td><td>"+ data[i].REC_REVISOR + 
-                                    "</td><td>"+ data[i].REC_REVISE_TIME + 
-                                    "</td></tr>");
-                            }
-                            form.render('select');//重新渲染下拉菜单
-                            console.log(data);
-                            //显示详情  
-                            $("#bodyCodeList").children("tr").on("click",ShowDetail);
-                        });
+                                    form.render('select');//重新渲染下拉菜单
+                                    form.render('checkbox');//重新渲染下拉菜单
+                                    console.log(data);
+                                    //显示详情  
+                                    $("#bodyCodeList").children("tr").on("click",ShowDetail);
+                           });
                     }
                 }
             });
@@ -330,8 +349,13 @@
 
         function Query()
         {
-            layer.msg("查询", { time: 2000, icon: 1});
+            //大类
+            var CODE_SOURCE = $("select[name='SelectTS01']").val();
+            var CODE_NAME = $("#TextCODE_NAME").val();
+            var CODE_CLASS = $("#TextCODE_CLASS").val();
+            location.href = "Index?CODE_SOURCE=" + CODE_SOURCE + "&CODE_NAME="+CODE_NAME +"&CODE_CLASS="+CODE_CLASS;
         }
+
     </script>
 </body>
 </html>

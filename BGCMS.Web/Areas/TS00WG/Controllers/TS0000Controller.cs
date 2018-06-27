@@ -17,10 +17,10 @@ namespace BGCMS.Web.Areas.TS00WG.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string CODE_SOURCE = "", string CODE_CLASS = "", string CODE_NAME = "")
         {
             ViewData["ListCodeData"] = _bll.GetCodeName();
-            var dict = _bll.GetAll(10);
+            var dict = _bll.GetAll(10, CODE_SOURCE, CODE_CLASS, CODE_NAME);
             var TTS0091 = dict["TTS0091"] as IList<TTS0091>;
             ViewData["ListCode"] = TTS0091;
             ViewData["Count"] = dict["Count"];
@@ -33,10 +33,10 @@ namespace BGCMS.Web.Areas.TS00WG.Controllers
         /// <param name="index"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult Index(int index)
+        public JsonResult Index(int index = 1,string CODE_SOURCE = "", string CODE_CLASS = "", string CODE_NAME = "")
         {
             index--;
-            var ListCode = _bll.Get(10,index);
+            var ListCode = _bll.Get(10,index, CODE_SOURCE, CODE_CLASS, CODE_NAME);
             return Json(ListCode, JsonRequestBehavior.DenyGet);
         }
         

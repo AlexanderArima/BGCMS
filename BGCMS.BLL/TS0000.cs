@@ -27,13 +27,33 @@ namespace BGMES.BLL
         /// 代码列表
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, object> GetAll(int count)
+        public Dictionary<string, object> GetAll(int count, string CODE_SOURCE, string CODE_CLASS, string CODE_NAME)
         {
             Dictionary<string, object> dict = new Dictionary<string, object>();
-            var TTS0091 = _dalTTS0091.GetAll(count);
+            var TTS0091 = _dalTTS0091.GetAll(count,m => 
+            {
+                if(m.DELETE_FLAG == " " &&
+                  (string.IsNullOrEmpty(CODE_SOURCE) ? true : (m.CODE_SOURCE == CODE_SOURCE)) &&
+                  (string.IsNullOrEmpty(CODE_CLASS) ? true : (m.CODE_CLASS.Contains(CODE_CLASS))) &&
+                  (string.IsNullOrEmpty(CODE_NAME) ? true : (m.CODE_NAME.Contains(CODE_NAME))))
+                {
+                    return true;
+                }
+                return false;
+            },n => n.CODE_CLASS);
             TTS0091 = ConvertUserAndTime(TTS0091);
             dict.Add("TTS0091", TTS0091);
-            dict.Add("Count", _dalTTS0091.Count());
+            dict.Add("Count", _dalTTS0091.Count(m => 
+            {
+                if (m.DELETE_FLAG == " " &&
+                   (string.IsNullOrEmpty(CODE_SOURCE) ? true : (m.CODE_SOURCE == CODE_SOURCE)) &&
+                   (string.IsNullOrEmpty(CODE_CLASS) ? true : (m.CODE_CLASS.Contains(CODE_CLASS))) &&
+                   (string.IsNullOrEmpty(CODE_NAME) ? true : (m.CODE_NAME.Contains(CODE_NAME))))
+                {
+                    return true;
+                }
+                return false;
+            }));
             return dict;
         }
 
@@ -51,9 +71,19 @@ namespace BGMES.BLL
         /// 代码列表
         /// </summary>
         /// <returns></returns>
-        public IList<TTS0091> Get(int count,int index)
+        public IList<TTS0091> Get(int count,int index,string CODE_SOURCE, string CODE_CLASS, string CODE_NAME)
         {
-            var TTS0091 = _dalTTS0091.GetAll(count, index);
+            var TTS0091 = _dalTTS0091.GetAll(count, index, m =>
+            {
+                if (m.DELETE_FLAG == " " &&
+                  (string.IsNullOrEmpty(CODE_SOURCE) ? true : (m.CODE_SOURCE == CODE_SOURCE)) &&
+                  (string.IsNullOrEmpty(CODE_CLASS) ? true : (m.CODE_CLASS.Contains(CODE_CLASS))) &&
+                  (string.IsNullOrEmpty(CODE_NAME) ? true : (m.CODE_NAME.Contains(CODE_NAME))))
+                {
+                    return true;
+                }
+                return false;
+            });
             TTS0091 = ConvertUserAndTime(TTS0091);
             return TTS0091;
         }
